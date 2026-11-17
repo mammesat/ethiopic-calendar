@@ -1,0 +1,8 @@
+* text=auto eol=lf
+tests/fixtures/dates.json -diff linguist-generated
+/tests export-ignore
+/bin export-ignore
+/.github export-ignore
+phpunit.xml export-ignore
+phpstan.neon export-ignore
+vitest.config.js export-ignore

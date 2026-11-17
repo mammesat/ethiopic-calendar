@@ -1,0 +1,58 @@
+{
+    "name": "mammesat/ethiopic-calendar",
+    "description": "Ethiopian calendar for Laravel, Livewire and Alpine: conversion, billing-safe arithmetic, fiscal year, formatting and a touch-friendly date picker.",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "laravel",
+        "livewire",
+        "alpine",
+        "ethiopia",
+        "ethiopic",
+        "ethiopian-calendar",
+        "calendar",
+        "datepicker",
+        "geez"
+    ],
+    "authors": [
+        {
+            "name": "Mohammed Jemal",
+            "email": "mamme.jemal17@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "illuminate/support": "^11.0|^12.0",
+        "nesbot/carbon": "^3.0"
+    },
+    "require-dev": {
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.18",
+        "orchestra/testbench": "^9.0|^10.0",
+        "pestphp/pest": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Mammesat\\EthiopicCalendar\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Mammesat\\EthiopicCalendar\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "lint": "pint",
+        "analyse": "phpstan analyse --memory-limit=1G",
+        "fixtures": "@php bin/generate-fixtures.php"
+    },
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}

@@ -1,0 +1,12 @@
+{
+  "name": "@mammesat/ethiopic-calendar",
+  "private": true,
+  "type": "module",
+  "description": "JavaScript side of mammesat/ethiopic-calendar: conversion and the Alpine date picker.",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "3.2.4"
+  }
+}

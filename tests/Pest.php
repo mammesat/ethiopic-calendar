@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use Mammesat\EthiopicCalendar\EthiopicDate;
 use Mammesat\EthiopicCalendar\Tests\TestCase;
 
 pest()->extend(TestCase::class)->in('Feature');
@@ -24,11 +25,11 @@ function fixtureRows(): array
 /** Shorthand: Ethiopian Y-m-d → Gregorian Y-m-d. */
 function eth(string $ethiopian): string
 {
-    return Mammesat\EthiopicCalendar\EthiopicDate::parse($ethiopian)->toGregorianString();
+    return EthiopicDate::parse($ethiopian)->toGregorianString();
 }
 
 /** Shorthand: Gregorian Y-m-d → Ethiopian Y-m-d. */
 function greg(string $gregorian): string
 {
-    return Mammesat\EthiopicCalendar\EthiopicDate::fromGregorian($gregorian)->toDateString();
+    return EthiopicDate::fromGregorian($gregorian)->toDateString();
 }

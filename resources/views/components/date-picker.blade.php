@@ -73,7 +73,7 @@
 
             {{-- Day grid --}}
             <div x-show="view === 'days'" class="mt-2">
-                <div class="grid grid-cols-7 text-center text-xs font-medium uppercase text-gray-500" aria-hidden="true">
+                <div class="grid grid-cols-7 text-center text-sm font-medium text-gray-500" aria-hidden="true">
                     <template x-for="(name, i) in weekdays" :key="i">
                         <div class="py-1" x-text="name"></div>
                     </template>

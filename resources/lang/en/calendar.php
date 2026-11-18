@@ -71,6 +71,9 @@ return [
     'fiscal_year' => 'FY :year',
 
     'picker' => [
+        'select_date' => 'Select date',
+        'cancel' => 'Cancel',
+        'ok' => 'OK',
         'placeholder' => 'Select a date',
         'today' => 'Today',
         'clear' => 'Clear',

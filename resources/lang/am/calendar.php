@@ -72,6 +72,9 @@ return [
     'fiscal_year' => 'በጀት ዓመት :year',
 
     'picker' => [
+        'select_date' => 'ቀን ይምረጡ',
+        'cancel' => 'ሰርዝ',
+        'ok' => 'እሺ',
         'placeholder' => 'ቀን ይምረጡ',
         'today' => 'ዛሬ',
         'clear' => 'አጽዳ',

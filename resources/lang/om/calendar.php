@@ -76,6 +76,9 @@ return [
     'fiscal_year' => 'Bara baajataa :year',
 
     'picker' => [
+        'select_date' => 'Guyyaa filadhu',
+        'cancel' => 'Dhiisi',
+        'ok' => 'Tole',
         'placeholder' => 'Guyyaa filadhu',
         'today' => "Har'a",
         'clear' => 'Haqi',

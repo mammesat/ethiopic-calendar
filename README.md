@@ -139,6 +139,50 @@ The views use Tailwind utility classes. Add the package views to your sources:
 @source "../../vendor/mammesat/ethiopic-calendar/resources/views";
 ```
 
+## NativePHP Mobile (native screens)
+
+For NativePHP Mobile v4 screens (`NativeComponent`), the package ships a
+Material-style date picker dialog built from native elements, in either
+calendar. Tapping a day highlights it; **OK** writes it, **Cancel**, a tap
+outside or the Android back button closes it.
+
+```php
+use Mammesat\EthiopicCalendar\Native\WithEthiopicDatePicker;
+
+class EditLease extends NativeComponent
+{
+    use WithEthiopicDatePicker;
+
+    public ?string $startDate = null;   // always Gregorian Y-m-d
+
+    // Optional, per field: min / max (Gregorian Y-m-d) and calendar.
+    protected function datePickerOptions(string $field): array
+    {
+        return $field === 'paidOn' ? ['max' => today()->toDateString()] : [];
+    }
+
+    public function updatedStartDate(string $value): void {}   // optional hook after OK
+}
+```
+
+```blade
+{{-- The root must be a stack so the dialog can layer over the screen. --}}
+<native:stack fill>
+    <native:column fill class="safe-area p-4 gap-4">
+        @include('ethiopic-calendar::native.date-field', [
+            'picker' => $this, 'field' => 'startDate', 'title' => 'Start date', 'secondary' => true,
+        ])
+    </native:column>
+
+    @include('ethiopic-calendar::native.date-picker-dialog', ['picker' => $this])
+</native:stack>
+```
+
+Included views don't receive the screen as `$this`, so pass it as `picker`.
+The trait defines `onBackPressed()`; if a screen needs its own, close the
+dialog first with `cancelDatePicker()`. The package does not require
+`nativephp/mobile`; the trait and views only matter inside a NativePHP app.
+
 ## Eloquent
 
 ```php

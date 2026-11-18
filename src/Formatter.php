@@ -56,7 +56,9 @@ final class Formatter
         $calendar ??= $this->calendars->calendar();
         [$year, $month, $day] = $this->parts($date, $calendar);
 
-        $text = $this->pattern($format, $locale, [
+        $patterns = $calendar->isEthiopian() ? 'formats' : 'gregorian_formats';
+
+        $text = $this->pattern($format, $locale, group: $patterns, values: [
             ':day' => (string) $day,
             ':dd' => sprintf('%02d', $day),
             ':mm' => sprintf('%02d', $month),
@@ -64,10 +66,13 @@ final class Formatter
             ':month' => $this->monthName($month, $calendar, $format !== 'medium', $locale),
         ]);
 
-        if ($era) {
+        $eraText = $era ? $this->line('era.'.$calendar->value, $locale) : '';
+
+        // A locale may leave an era empty (am / om write Gregorian dates without one).
+        if ($eraText !== '') {
             $text = $this->pattern('with_era', $locale, [
                 ':date' => $text,
-                ':era' => $this->line('era.'.$calendar->value, $locale),
+                ':era' => $eraText,
             ]);
         }
 
@@ -189,6 +194,10 @@ final class Formatter
             'weekdaysMin' => $list('weekdays_min'),
             'weekdays' => $list('weekdays'),
             'format' => $this->line('formats.long', $locale),
+            'formats' => [
+                'ethiopian' => $this->line('formats.long', $locale),
+                'gregorian' => $this->line('gregorian_formats.long', $locale),
+            ],
             'era' => [
                 'ethiopian' => $this->line('era.ethiopian', $locale),
                 'gregorian' => $this->line('era.gregorian', $locale),
@@ -218,9 +227,9 @@ final class Formatter
     /**
      * @param  array<string, string>  $values
      */
-    private function pattern(string $name, ?string $locale, array $values): string
+    private function pattern(string $name, ?string $locale, array $values, string $group = 'formats'): string
     {
-        return strtr($this->line('formats.'.$name, $locale), $values);
+        return strtr($this->line($group.'.'.$name, $locale), $values);
     }
 
     private function line(string $key, ?string $locale): string

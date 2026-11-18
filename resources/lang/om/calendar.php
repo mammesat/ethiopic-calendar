@@ -4,9 +4,9 @@
 // Afaan Oromo speaker before release (implementation plan, milestone 1).
 //
 // Afaan Oromo commonly uses the same month names for both calendars,
-// matched by season (Fulbaana ≈ Meskerem ≈ September). Dates should
-// therefore always be shown with the era marker or a secondary date when
-// the calendar could be ambiguous.
+// matched by season (Fulbaana ≈ Meskerem ≈ September). To keep the two
+// apart, Oromo names are used for Ethiopian dates only; Gregorian dates
+// are written in Latin letters, English style: "Sep 25, 2026".
 
 return [
     'ethiopian_months' => [
@@ -20,13 +20,13 @@ return [
     ],
 
     'gregorian_months' => [
-        1 => 'Amajjii', 'Guraandhala', 'Bitootessa', 'Eebila', 'Caamsaa', 'Waxabajjii',
-        'Adoolessa', 'Hagayya', 'Fulbaana', 'Onkoloolessa', 'Sadaasa', 'Muddee',
+        1 => 'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December',
     ],
 
     'gregorian_months_short' => [
-        1 => 'Ama', 'Gur', 'Bit', 'Eeb', 'Caa', 'Wax',
-        'Ado', 'Hag', 'Ful', 'Onk', 'Sad', 'Mud',
+        1 => 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
     ],
 
     'weekdays' => [
@@ -50,7 +50,7 @@ return [
 
     'era' => [
         'ethiopian' => 'A.L.I.',
-        'gregorian' => 'A.L.G.',
+        'gregorian' => '', // Gregorian dates carry no era marker
     ],
 
     'formats' => [
@@ -63,6 +63,14 @@ return [
         'secondary' => ':date (:secondary)',
         'time' => ':time :period',
         'datetime' => ':date, :time',
+    ],
+
+    // Gregorian dates use these patterns instead of 'formats' (long, medium, short, month).
+    'gregorian_formats' => [
+        'long' => ':month :day, :year',
+        'medium' => ':month :day, :year',
+        'short' => ':dd/:mm/:year',
+        'month' => ':month :year',
     ],
 
     'fiscal_year' => 'Bara baajataa :year',

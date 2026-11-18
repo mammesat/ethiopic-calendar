@@ -42,7 +42,19 @@ it('formats Pagume days', function () {
 
 it('formats Gregorian dates', function () {
     expect($this->f->date('2026-09-11', 'long', Calendar::Gregorian))->toBe('11 September 2026')
-        ->and($this->f->date('2026-09-11', 'medium', Calendar::Gregorian, 'am'))->toBe('ሴፕቴ 11, 2026');
+        ->and($this->f->date('2026-09-11', 'medium', Calendar::Gregorian, 'am'))->toBe('Sep 11, 2026');
+});
+
+it('writes Gregorian dates in Latin letters, without an era, in Amharic and Afaan Oromo', function (string $locale) {
+    expect($this->f->date('2026-09-25', 'medium', Calendar::Gregorian, $locale))->toBe('Sep 25, 2026')
+        ->and($this->f->date('2026-09-25', 'long', Calendar::Gregorian, $locale))->toBe('September 25, 2026')
+        ->and($this->f->date('2026-09-25', 'medium', Calendar::Gregorian, $locale, era: true))->toBe('Sep 25, 2026');
+})->with(['am', 'om']);
+
+it('shows the Gregorian secondary date in Latin letters in Amharic and Afaan Oromo', function () {
+    expect($this->f->date('2026-09-25', 'medium', locale: 'am', secondary: true))->toBe('መስከ 15, 2019 (Sep 25, 2026)')
+        ->and($this->f->date('2026-09-25', 'medium', locale: 'om', secondary: true))->toBe('Ful 15, 2019 (Sep 25, 2026)')
+        ->and($this->f->date('2026-09-25', 'medium', Calendar::Gregorian, 'am', secondary: true))->toBe('Sep 25, 2026 (መስከ 15, 2019 ዓ.ም.)');
 });
 
 it('adds weekday, era and the secondary date', function () {

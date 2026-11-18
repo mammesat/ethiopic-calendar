@@ -16,13 +16,13 @@ return [
     ],
 
     'gregorian_months' => [
-        1 => 'ጃንዋሪ', 'ፌብሩዋሪ', 'ማርች', 'ኤፕሪል', 'ሜይ', 'ጁን',
-        'ጁላይ', 'ኦገስት', 'ሴፕቴምበር', 'ኦክቶበር', 'ኖቬምበር', 'ዲሴምበር',
+        1 => 'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December',
     ],
 
     'gregorian_months_short' => [
-        1 => 'ጃንዋ', 'ፌብሩ', 'ማርች', 'ኤፕሪ', 'ሜይ', 'ጁን',
-        'ጁላይ', 'ኦገስ', 'ሴፕቴ', 'ኦክቶ', 'ኖቬም', 'ዲሴም',
+        1 => 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
     ],
 
     'weekdays' => [
@@ -46,7 +46,7 @@ return [
 
     'era' => [
         'ethiopian' => 'ዓ.ም.',
-        'gregorian' => 'እ.ኤ.አ.',
+        'gregorian' => '', // Gregorian dates carry no era marker
     ],
 
     'formats' => [
@@ -59,6 +59,14 @@ return [
         'secondary' => ':date (:secondary)',
         'time' => ':period :time',
         'datetime' => ':date፣ :time',
+    ],
+
+    // Gregorian dates use these patterns instead of 'formats' (long, medium, short, month).
+    'gregorian_formats' => [
+        'long' => ':month :day, :year',
+        'medium' => ':month :day, :year',
+        'short' => ':dd/:mm/:year',
+        'month' => ':month :year',
     ],
 
     'fiscal_year' => 'በጀት ዓመት :year',

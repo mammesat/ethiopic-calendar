@@ -48,7 +48,7 @@ export function stepMonth ({ year, month }, delta, calendar) {
 }
 
 /** Fill a date pattern such as ":day :month :year" from translated names. */
-export function formatDate (iso, calendar, strings, pattern = strings.format) {
+export function formatDate (iso, calendar, strings, pattern = strings.formats?.[calendar] ?? strings.format) {
   const jdn = isoToJdn(iso)
   if (jdn === null) return ''
   const { year, month, day } = partsOf(jdn, calendar)

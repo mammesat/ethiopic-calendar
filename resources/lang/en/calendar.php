@@ -60,6 +60,14 @@ return [
         'datetime' => ':date, :time',
     ],
 
+    // Gregorian dates use these patterns instead of 'formats' (long, medium, short, month).
+    'gregorian_formats' => [
+        'long' => ':day :month :year',
+        'medium' => ':day :month :year',
+        'short' => ':dd/:mm/:year',
+        'month' => ':month :year',
+    ],
+
     'fiscal_year' => 'FY :year',
 
     'picker' => [

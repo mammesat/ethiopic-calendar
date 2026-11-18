@@ -31,7 +31,8 @@ it('has the same keys in every locale', function (string $locale) {
 it('has no empty strings', function (string $locale) {
     $empty = array_filter(
         flattenKeys(langFile($locale)),
-        fn (string $key): bool => trim((string) data_get(langFile($locale), $key)) === '',
+        // An era may be empty on purpose: am / om write Gregorian dates without one.
+        fn (string $key): bool => ! str_starts_with($key, 'era.') && trim((string) data_get(langFile($locale), $key)) === '',
     );
 
     expect($empty)->toBe([]);

@@ -91,7 +91,7 @@ use Mammesat\EthiopicCalendar\Formatter;
 
 $f = app(Formatter::class);
 $f->date('2026-09-11');                          // "1 Mes 2019"           (medium)
-$f->date('2026-09-11', 'long', locale: 'am');    // "መስከረም 1 ቀን 2019"
+$f->date('2026-09-11', 'long', locale: 'am');    // "መስከረም 1 2019"
 $f->date('2026-09-11', 'short');                 // "01/01/2019"
 $f->date('2026-09-11', 'long', weekday: true, era: true);  // "Friday, 1 Meskerem 2019 E.C."
 $f->date('2026-09-11', secondary: true);         // "1 Mes 2019 (11 Sep 2026 G.C.)"

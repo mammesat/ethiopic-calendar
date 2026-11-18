@@ -12,7 +12,7 @@ use InvalidArgumentException;
  * Formats dates as locale × calendar × format.
  *
  * Formats:
- *   long    1 Meskerem 2019        መስከረም 1 ቀን 2019
+ *   long    1 Meskerem 2019        መስከረም 1 2019
  *   medium  1 Mes 2019             መስከ 1, 2019
  *   short   01/01/2019
  *   month   Meskerem 2019          (billing-month and period headers)

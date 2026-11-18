@@ -50,7 +50,7 @@ return [
     ],
 
     'formats' => [
-        'long' => ':month :day ቀን :year',
+        'long' => ':month :day :year',
         'medium' => ':month :day, :year',
         'short' => ':dd/:mm/:year',
         'month' => ':month :year',

@@ -25,7 +25,7 @@ it('formats Ethiopian dates in English', function (string $format, string $expec
 it('formats Ethiopian dates in Amharic', function (string $format, string $expected) {
     expect($this->f->date('2026-09-11', $format, locale: 'am'))->toBe($expected);
 })->with([
-    ['long', 'መስከረም 1 ቀን 2019'],
+    ['long', 'መስከረም 1 2019'],
     ['medium', 'መስከ 1, 2019'],
     ['short', '01/01/2019'],
     ['month', 'መስከረም 2019'],
@@ -37,7 +37,7 @@ it('formats Ethiopian dates in Afaan Oromo', function () {
 
 it('formats Pagume days', function () {
     expect($this->f->date('2023-09-11', 'long'))->toBe('6 Pagume 2015')
-        ->and($this->f->date('2023-09-11', 'long', locale: 'am'))->toBe('ጳጉሜ 6 ቀን 2015');
+        ->and($this->f->date('2023-09-11', 'long', locale: 'am'))->toBe('ጳጉሜ 6 2015');
 });
 
 it('formats Gregorian dates', function () {
@@ -50,7 +50,7 @@ it('adds weekday, era and the secondary date', function () {
         ->and($this->f->date('2026-09-11', 'long', era: true))->toBe('1 Meskerem 2019 E.C.')
         ->and($this->f->date('2026-09-11', 'medium', secondary: true))->toBe('1 Mes 2019 (11 Sep 2026 G.C.)')
         ->and($this->f->date('2026-09-11', 'medium', Calendar::Gregorian, secondary: true))->toBe('11 Sep 2026 (1 Mes 2019 E.C.)')
-        ->and($this->f->date('2026-09-11', 'long', locale: 'am', weekday: true, era: true))->toBe('ዓርብ፣ መስከረም 1 ቀን 2019 ዓ.ም.');
+        ->and($this->f->date('2026-09-11', 'long', locale: 'am', weekday: true, era: true))->toBe('ዓርብ፣ መስከረም 1 2019 ዓ.ም.');
 });
 
 it('returns null for empty values', function () {
@@ -113,5 +113,5 @@ it('provides the picker strings', function () {
         ->and($s['months']['gregorian'])->toHaveCount(12)
         ->and($s['weekdaysMin'])->toHaveCount(7)
         ->and($s['labels']['today'])->toBe('ዛሬ')
-        ->and($s['format'])->toBe(':month :day ቀን :year');
+        ->and($s['format'])->toBe(':month :day :year');
 });

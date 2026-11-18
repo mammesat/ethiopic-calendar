@@ -255,6 +255,7 @@ trait WithEthiopicDatePicker
                 ? $formatter->date($this->datePickerPending, 'medium', $calendar)
                 : '—',
             'title' => $formatter->monthName($this->datePickerMonth, $calendar).' '.$this->datePickerYear,
+            'gridKey' => $calendar->value.'-'.$this->datePickerYear.'-'.$this->datePickerMonth,
             'weekdays' => $weekdays,
             'weeks' => $weeks,
             'years' => array_chunk($years, 3),

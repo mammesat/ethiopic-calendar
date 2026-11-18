@@ -42,10 +42,10 @@
                 </native:pressable>
                 <native:spacer />
                 @if ($dp['mode'] === 'days')
-                    <native:pressable a11y-label="{{ $dp['strings']['previous_month'] }}" @press="datePickerPreviousMonth" class="w-[48] h-[48] items-center justify-center rounded-full {{ $dp['canPrevious'] ? '' : 'opacity-30' }}">
+                    <native:pressable ref="date-picker-previous" a11y-label="{{ $dp['strings']['previous_month'] }}" @press="datePickerPreviousMonth" class="w-[48] h-[48] items-center justify-center rounded-full {{ $dp['canPrevious'] ? '' : 'opacity-30' }}">
                         <native:icon name="chevron_left" class="text-theme-on-surface-variant" :size="24" />
                     </native:pressable>
-                    <native:pressable a11y-label="{{ $dp['strings']['next_month'] }}" @press="datePickerNextMonth" class="w-[48] h-[48] items-center justify-center rounded-full {{ $dp['canNext'] ? '' : 'opacity-30' }}">
+                    <native:pressable ref="date-picker-next" a11y-label="{{ $dp['strings']['next_month'] }}" @press="datePickerNextMonth" class="w-[48] h-[48] items-center justify-center rounded-full {{ $dp['canNext'] ? '' : 'opacity-30' }}">
                         <native:icon name="chevron_right" class="text-theme-on-surface-variant" :size="24" />
                     </native:pressable>
                 @else
@@ -59,8 +59,8 @@
             </native:row>
 
             @if ($dp['mode'] === 'days')
-                {{-- Day grid --}}
-                <native:column class="w-full px-3 pb-1">
+                {{-- Day grid, keyed by month: a month change builds a fresh grid instead of mutating cells in place --}}
+                <native:column native:key="date-picker-grid-{{ $dp['gridKey'] }}" class="w-full px-3 pb-1">
                     <native:row class="w-full h-[40] items-center">
                         @foreach ($dp['weekdays'] as $weekday)
                             <native:text class="flex-1 text-sm text-center text-theme-on-surface">{{ $weekday }}</native:text>
@@ -118,8 +118,8 @@
 
             {{-- Actions --}}
             <native:row class="w-full items-center justify-end gap-2 px-3 pt-2 pb-4">
-                <native:button variant="ghost" label="{{ $dp['strings']['cancel'] }}" @press="cancelDatePicker" />
-                <native:button variant="ghost" label="{{ $dp['strings']['ok'] }}" @press="confirmDatePicker" />
+                <native:button ref="date-picker-cancel" variant="ghost" label="{{ $dp['strings']['cancel'] }}" @press="cancelDatePicker" />
+                <native:button ref="date-picker-ok" variant="ghost" label="{{ $dp['strings']['ok'] }}" @press="confirmDatePicker" />
             </native:row>
         </native:pressable>
     </native:pressable>

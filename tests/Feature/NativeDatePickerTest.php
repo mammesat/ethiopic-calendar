@@ -119,3 +119,21 @@ it('translates the dialog', function () {
         ->and($state['strings']['ok'])->toBe('እሺ')
         ->and($state['weekdays'][0])->toBe('ሰ');
 });
+
+it('gives each month grid its own key, so the native renderer rebuilds it instead of mutating cells', function () {
+    // Regression: on the phone (Jump, 18 Nov 2026) the month arrows crashed the
+    // renderer when cells changed element type in place. The view keys the grid
+    // by this value.
+    $s = $this->screen;
+    $s->openDatePicker('startDate');
+    $meskerem = $s->datePickerState()['gridKey'];
+
+    $s->datePickerNextMonth();
+    $tikimt = $s->datePickerState()['gridKey'];
+
+    $s->datePickerPreviousMonth();
+
+    expect($meskerem)->toBe('ethiopian-2019-1')
+        ->and($tikimt)->toBe('ethiopian-2019-2')
+        ->and($s->datePickerState()['gridKey'])->toBe($meskerem);
+});
